@@ -9,10 +9,10 @@ INSTALL_INCLUDE_DIR ?= $(PREFIX)/include
 
 LIBS=fmt sdl ssl openal ui uv mysql
 
-CFLAGS = -Wall -O3 -I src -msse2 -mfpmath=sse -std=c11 -I include -I include/pcre -I include/mikktspace -I include/minimp3 -D LIBHL_EXPORTS
+CFLAGS = -Wall -O3 -I src -std=c11 -I include -I include/pcre -I include/mikktspace -I include/minimp3 -D LIBHL_EXPORTS  -I /opt/homebrew/opt/openal-soft/include -I /opt/homebrew/include/SDL2 -I /opt/homebrew/opt/jpeg-turbo/include -I /opt/homebrew/include
 LFLAGS = -L. -lhl
 EXTRA_LFLAGS ?=
-LIBFLAGS =
+LIBFLAGS = -L /opt/homebrew/opt/openal-soft/lib -L/opt/homebrew/lib -L/opt/homebrew/opt/jpeg-turbo/lib 
 HLFLAGS = -ldl
 LIBEXT = so
 LIBTURBOJPEG = -lturbojpeg
@@ -82,8 +82,8 @@ LIBSSL = -framework Security -framework CoreFoundation
 RELEASE_NAME = osx
 
 # Mac native debug
-HL_DEBUG = include/mdbg/mdbg.o include/mdbg/mach_excServer.o include/mdbg/mach_excUser.o
-LIB += ${HL_DEBUG}
+#HL_DEBUG = include/mdbg/mdbg.o include/mdbg/mach_excServer.o include/mdbg/mach_excUser.o
+#LIB += ${HL_DEBUG}
 
 else
 
